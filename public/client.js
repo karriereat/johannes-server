@@ -3,7 +3,7 @@ const client = feathers();
 
 client.configure(feathers.socketio(socket));
 
-const loadDecks = async () => {
+const findDecks = async () => {
   return await client.service('decks').find({
     query: {
       $limit: Number.MAX_SAFE_INTEGER,
@@ -14,15 +14,31 @@ const loadDecks = async () => {
   });
 };
 
-const addDeck = async (name) => {
+const createDeck = async (name) => {
   return await client.service('decks').create({
     name: name || 'Slideshow'
   });
 };
 
+const getDeck = async (id) => {
+  return await client.service('decks').get(id);
+};
+
+const createSlide = async (parent, title, text) => {
+  return await client.service('slides').create({
+    parent,
+    title,
+    text
+  });
+};
+
+const getSlide = async (id) => {
+  return await client.service('slides').get(id);
+};
+
 client.service('decks').on('created', async () => {
-  const decks = await loadDecks();
+  const decks = await findDecks();
   console.log(decks.data);
 });
 
-console.log(Object.keys({ loadDecks, addDeck }));
+console.log(Object.keys({ findDecks, createDeck, getDeck, createSlide, getSlide }));

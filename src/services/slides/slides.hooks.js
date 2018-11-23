@@ -1,15 +1,13 @@
 
 
-const processDeck = require('../../hooks/process-deck');
-
-const findSlides = require('../../hooks/find-slides');
+const processSlide = require('../../hooks/process-slide');
 
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [processDeck()],
+    create: [processSlide()],
     update: [],
     patch: [],
     remove: []
@@ -18,7 +16,7 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [findSlides()],
+    get: [],
     create: [],
     update: [],
     patch: [],
