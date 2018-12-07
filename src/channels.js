@@ -50,6 +50,7 @@ module.exports = function(app) {
   // Here you can also add service specific event publishers
   // e.g. the publish the `users` service `created` event to the `admins` channel
   app.service('decks').publish('created', () => app.channel('anonymous'));
+  app.service('slides').publish('created', () => app.channel('anonymous'));
 
   // With the userid and email organization from above you can easily select involved users
   // app.service('messages').publish(() => {

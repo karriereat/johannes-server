@@ -6,15 +6,19 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     const { data } = context;
 
     // Throw an error if we didn't get a text
-    if(!data.parent) {
+    if (!data.parent) {
       throw new Error('A slide must have a deck as it’s parent');
     }
 
     // Override the original data (so that people can't submit additional stuff)
     context.data = {
-      title: data.title || '',
-      text: data.text || '',
       parent: data.parent,
+      title: data.title || '',
+      titleEditor: data.titleEditor || null,
+      text: data.text || '',
+      textEditor: data.textEditor || null,
+      imageUrl: data.imageUrl || null,
+      imageSlot: data.imageSlot || null,
       createdAt: new Date().getTime()
     };
 

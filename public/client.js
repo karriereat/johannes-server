@@ -32,13 +32,21 @@ const createSlide = async (parent, title, text) => {
   });
 };
 
+const patchSlide = async (id, data) => {
+  return await client.service('slides').patch(id, data);
+};
+
 const getSlide = async (id) => {
   return await client.service('slides').get(id);
 };
 
-client.service('decks').on('created', async () => {
-  const decks = await findDecks();
-  console.log(decks.data);
+client.service('decks').on('created', async (deck) => {
+  console.log('created', deck);
 });
 
-console.log(Object.keys({ findDecks, createDeck, getDeck, createSlide, getSlide }));
+client.service('slides').on('created', async (slide) => {
+  console.log('created', slide);
+});
+
+console.log(Object.keys({ findDecks, createDeck, getDeck }));
+console.log(Object.keys({ createSlide, getSlide, patchSlide }));

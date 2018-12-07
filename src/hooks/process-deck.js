@@ -6,7 +6,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     const { data } = context;
 
     // Throw an error if we didn't get a text
-    if(!data.name) {
+    if (!data.name) {
       throw new Error('A deck must have a name');
     }
 
