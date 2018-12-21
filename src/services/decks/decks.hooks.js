@@ -1,12 +1,10 @@
-
-
-const processDeck = require('../../hooks/process-deck');
-
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const findSlides = require('../../hooks/find-slides');
+const processDeck = require('../../hooks/process-deck');
 
 module.exports = {
   before: {
-    all: [],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
     create: [processDeck()],

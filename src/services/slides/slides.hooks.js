@@ -1,10 +1,9 @@
-
-
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const processSlide = require('../../hooks/process-slide');
 
 module.exports = {
   before: {
-    all: [],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
     create: [processSlide()],
